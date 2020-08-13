@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
+using DynamicForm.BusinessLogic.Exceptions;
 using DynamicForm.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,15 +18,7 @@ namespace DynamicForm.Web.Controllers
 
         public async Task<IActionResult> SaveFormSubmission (JsonElement submission)
         {
-            try
-            {
-                await _submissionService.SaveSubmission(submission);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-
+            await _submissionService.SaveSubmission(submission);
             return Ok();
         }
     }
