@@ -8,7 +8,7 @@ namespace DynamicForm.Web.Controllers
     [ApiController]
     public class SubmissionsController : ControllerBase
     {
-        public IActionResult SaveFormSubmission (JsonElement submission)
+        public async Task<IActionResult> SaveFormSubmission (JsonElement submission)
         {
             foreach (var element in submission.EnumerateObject())
             {
