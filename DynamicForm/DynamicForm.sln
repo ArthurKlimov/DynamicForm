@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicForm.Web", "DynamicForm.Web\DynamicForm.Web.csproj", "{A5A297CF-3272-42F8-9DFA-430EA872E2EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicForm.Web", "DynamicForm.Web\DynamicForm.Web.csproj", "{A5A297CF-3272-42F8-9DFA-430EA872E2EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicForm.BusinessLogic", "DynamicForm.BusinessLogic\DynamicForm.BusinessLogic.csproj", "{4B818C28-6376-4C4E-B6F9-EF38D3B8C841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicForm.DataAccess", "DynamicForm.DataAccess\DynamicForm.DataAccess.csproj", "{4EDF931B-E96C-467B-AAE2-E56B156E89DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A5A297CF-3272-42F8-9DFA-430EA872E2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5A297CF-3272-42F8-9DFA-430EA872E2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5A297CF-3272-42F8-9DFA-430EA872E2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B818C28-6376-4C4E-B6F9-EF38D3B8C841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B818C28-6376-4C4E-B6F9-EF38D3B8C841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B818C28-6376-4C4E-B6F9-EF38D3B8C841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B818C28-6376-4C4E-B6F9-EF38D3B8C841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDF931B-E96C-467B-AAE2-E56B156E89DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDF931B-E96C-467B-AAE2-E56B156E89DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDF931B-E96C-467B-AAE2-E56B156E89DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDF931B-E96C-467B-AAE2-E56B156E89DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
