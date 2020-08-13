@@ -1,5 +1,9 @@
 ﻿using DynamicForm.BusinessLogic.Interfaces;
+using DynamicForm.DataAccess;
+using DynamicForm.DataAccess.Domain;
+using System;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -7,11 +11,21 @@ namespace DynamicForm.BusinessLogic.Services
 {
     public class SubmissionService : ISubmissionService
     {
-        public Task SaveSubmission(JsonElement submission)
+        private readonly TestDbContext _db;
+        
+        public SubmissionService(TestDbContext db)
+        {
+            _db = db;
+        }
+
+        public async Task SaveSubmission(JsonElement submission)
         {
             var answers = submission.EnumerateObject();
-            //Достать все поля из базы
-            //Создать новый объект submission
+
+            var newSubmission = new Submission();
+            _db.Submissions.Add(newSubmission);
+
+            var fields = _db.Fields;
 
             foreach (var answer in answers)
             {
@@ -20,20 +34,47 @@ namespace DynamicForm.BusinessLogic.Services
                     answer.Value.ValueKind == JsonValueKind.Object)
                     continue;
 
-                if (answer.Value.ValueKind != JsonValueKind.Array)
+                var currentField = fields.FirstOrDefault(x => x.Name == answer.Name);
+                if (currentField == null)
                 {
-                    //если answer.name нет в списке полей базы, то добавить поле
-                    //Создать новый Answer и привязать его к полю 
-                    //А потом добавить его к submission
+                    currentField = new Field
+                    {
+                        Name = answer.Name
+                    };
+
+                    _db.Fields.Add(currentField);
                 }
 
-                foreach (var item in answer.Value.EnumerateArray())
+                if (answer.Value.ValueKind != JsonValueKind.Array)
                 {
-                    //если answer.name нет в списке полей базы, то добавить поле
-                    //Создать новый Answer и привязать его к полю 
-                    //А потом добавить его к submission
+                    var newAnswer = new Answer
+                    {
+                        Value = answer.Value.ToString()
+                    };
+
+                    currentField.Answers.Add(newAnswer);
+                    newSubmission.Answers.Add(newAnswer);
+                    _db.Answers.Add(newAnswer);
+
+                    continue;
+                }
+
+                foreach (var value in answer.Value.EnumerateArray())
+                {
+                    var newAnswer = new Answer
+                    {
+                        Value = value.ToString()
+                    };
+
+                    currentField.Answers.Add(newAnswer);
+                    newSubmission.Answers.Add(newAnswer);
+                    _db.Answers.Add(newAnswer);
                 }
             }
+
+            newSubmission.SubmissionDate = DateTime.UtcNow;
+
+            await _db.SaveChangesAsync();
         }
     }
 }
