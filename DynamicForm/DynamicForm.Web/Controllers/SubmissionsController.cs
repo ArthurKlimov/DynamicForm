@@ -15,7 +15,8 @@ namespace DynamicForm.Web.Controllers
             _submissionService = submissionService;
         }
 
-        public async Task<IActionResult> SaveFormSubmission (JsonElement submission)
+        [HttpPost]
+        public async Task<IActionResult> SaveFormSubmission ([FromBody] JsonElement submission)
         {
             await _submissionService.SaveSubmission(submission);
             return Ok();
