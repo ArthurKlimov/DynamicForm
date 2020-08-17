@@ -1,5 +1,6 @@
 using DynamicForm.BusinessLogic.Interfaces;
 using DynamicForm.BusinessLogic.Services;
+using DynamicForm.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace DynamicForm.Web
         {
             services.AddControllers();
             services.AddScoped<ISubmissionService, SubmissionService>();
+            services.AddSingleton<ISubmissionRepository, SubmissionRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
