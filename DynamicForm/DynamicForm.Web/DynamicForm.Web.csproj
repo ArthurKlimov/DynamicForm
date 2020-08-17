@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DynamicForm.BusinessLogic\DynamicForm.BusinessLogic.csproj" />
-    <ProjectReference Include="..\DynamicForm.DataAccess\DynamicForm.DataAccess.csproj" />
   </ItemGroup>
 
 

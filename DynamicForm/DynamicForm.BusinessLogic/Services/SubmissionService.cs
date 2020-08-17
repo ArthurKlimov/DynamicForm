@@ -1,6 +1,7 @@
 ﻿using DynamicForm.BusinessLogic.Interfaces;
 using DynamicForm.DataAccess;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -20,6 +21,20 @@ namespace DynamicForm.BusinessLogic.Services
             var documentSubmission = BsonDocument.Parse(submission.ToString());
 
             await _mongoRepository.CreateSubmission(documentSubmission);
+        }
+
+        public async Task<JsonDocument> GetSubmissions(JsonElement filter)
+        {
+            var documentFilter = BsonDocument.Parse(filter.ToString());
+
+            var documentSubmissions = await _mongoRepository.GetSubmissions(documentFilter);
+
+            var jsonWriterSettings = new JsonWriterSettings()
+            {
+                OutputMode = JsonOutputMode.Strict
+            };
+
+            return JsonDocument.Parse(documentSubmissions.ToJson(jsonWriterSettings));
         }
     }
 }

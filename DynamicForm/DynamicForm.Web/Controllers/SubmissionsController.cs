@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using DynamicForm.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 
 namespace DynamicForm.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class SubmissionsController : ControllerBase
     {
@@ -17,10 +16,18 @@ namespace DynamicForm.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveFormSubmission (JsonElement json)
+        public async Task<IActionResult> SaveFormSubmission (JsonElement submission)
         {
-            await _submissionService.SaveSubmission(json);
+            await _submissionService.SaveSubmission(submission);
+
             return Ok();
+        }
+
+        public async Task<IActionResult> GetSubmission (JsonElement filter)
+        {
+            var submissions = await _submissionService.GetSubmissions(filter);
+
+            return Ok(submissions);
         }
     }
 }
