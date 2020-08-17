@@ -27,7 +27,7 @@ namespace DynamicForm.Web.Controllers
         {
             var submissions = await _submissionService.GetSubmissions(filter);
 
-            return Ok(submissions);
+            return Ok(submissions.RootElement);
         }
     }
 }
