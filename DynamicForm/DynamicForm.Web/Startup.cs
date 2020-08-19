@@ -26,6 +26,7 @@ namespace DynamicForm.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddScoped<ISubmissionService, SubmissionService>();
             services.AddSingleton<ISubmissionRepository, SubmissionRepository>();
         }
@@ -37,10 +38,12 @@ namespace DynamicForm.Web
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

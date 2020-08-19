@@ -22,6 +22,14 @@ module.exports = {
             chunks: 'all'
         }
     },
+    devServer: {
+        port: 1337,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type"
+        }
+    },
     resolve: {
         alias: {
           'vue$': 'vue/dist/vue.esm.js'

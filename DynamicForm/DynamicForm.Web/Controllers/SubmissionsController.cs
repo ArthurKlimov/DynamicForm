@@ -1,12 +1,14 @@
 ﻿using System.Text.Json;
 using System.Threading.Tasks;
 using DynamicForm.BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DynamicForm.Web.Controllers
 {
-    [Route("api/v1/[controller]")]
     [ApiController]
+    [Route("api/v1/[controller]")]
+    [EnableCors]
     public class SubmissionsController : ControllerBase
     {
         private readonly ISubmissionService _submissionService;
@@ -16,7 +18,7 @@ namespace DynamicForm.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveFormSubmission (JsonElement submission)
+        public async Task<IActionResult> SaveFormSubmission ([FromBody] JsonElement submission)
         {
             await _submissionService.SaveSubmission(submission);
 

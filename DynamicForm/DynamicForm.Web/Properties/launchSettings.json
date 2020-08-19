@@ -5,14 +5,14 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:51291",
-      "sslPort": 44344
+      "sslPort": 1488
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "dynamicform",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,8 +20,8 @@
     "DynamicForm.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "dynamicform",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "",
+      "applicationUrl": "https://localhost:1488;http://localhost:51291",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
