@@ -5,37 +5,15 @@ import 'popper.js/dist/umd/popper';
 import 'bootstrap/dist/js/bootstrap';
 const axios = require('axios');
 
+import SubmitComponent from './components/submit-component.vue'
+
 import Vue from 'vue';
 
 var app = new Vue({
     el: '#app',
     data: {
-        submission: {
-            name: '',
-            occupation: 'Full-stack',
-            like: true,
-            favouriteFood: "Burgers"
-        }
+      components: {
+        'submit-component': submitComponent
+      }
     },
-    created: function () {
-    },
-    methods: {
-        submit: function() {
-            let submission = this.submission;
-
-            axios({
-                method: 'post',
-                url: 'https://localhost:44344/api/v1/submissions',
-                contentType: 'application/json',
-                data: submission,
-                responseType: 'json'
-            })
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-        }
-    }
 })
